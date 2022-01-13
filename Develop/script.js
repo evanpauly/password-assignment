@@ -1,5 +1,4 @@
 // Assignment code here
-//trying to push to MY repository
 
 // Get references to the #generate element
 var generateBtn = document.querySelector("#generate");
