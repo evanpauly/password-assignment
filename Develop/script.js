@@ -32,7 +32,10 @@ function lowercase() {
   return selectLowercase;
 }
 
-
+function useLowercase() {
+  var lowercase = "abcdefghijklmnopqrstuvwxyz";
+  return lowercase;
+}
 
 function uppercase() {
   var uppercase = window.confirm("Uppercase Letters?");
@@ -50,7 +53,10 @@ function uppercase() {
   return selectUppercase;
 }
 
-
+function useUppercase() {
+  var uppercase = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+  return uppercase;
+}
 
 function numbers() {
   var numbers = window.confirm("Numbers?");
@@ -68,7 +74,10 @@ function numbers() {
   return selectNumbers;
 }
 
-
+function useNumbers() {
+    var numbers = "0123456789";
+    return numbers;
+  }
 
 function special() {
   var special = window.confirm("Special Charachters?");
@@ -86,9 +95,10 @@ function special() {
   return selectSpecialCharacters;
 }
 
-
-
-
+function useSpecial() {
+  var specialCharacters = "!#$%'()*+,-./:;<=>?@[\]^_`{|}~";
+  return specialCharacters;
+}
 
 function generatePassword() {
   var passwordLength = length();
@@ -102,41 +112,48 @@ function generatePassword() {
     return generatePassword();
   }
 
-  var finalPassword = "";
+  var password = "";
+  var options = new Array();
+  if (lowercase === true) {
+    options.push(1);
+  }
+  if (uppercase === true) {
+    options.push(2);
+  }
+  if (numbers === true) {
+    options.push(3);
+  }
+  if (specialCharacters === true) {
+    options.push(4);
+  }
 
-
-
-
-
-
-  var lowercase = "abcdefghijklmnopqrstuvwxyz";
-  var uppercase = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
-  var numbers = "0123456789";
-  var specialCharacters = "!#$%'()*+,-./:;<=>?@[\]^_`{|}~";
-  var passwordLength = "";
-
-  
-  
-
-  var uppercase = window.confirm("Uppercase Letters?");
-  var numbers = window.confirm("Numbers?");
-  var specialCharacters = window.confirm("Special Charachters?")
-
-  if (lowercase === false && uppercase === false && numbers === false && specialCharacters === false) {
-    window.alert("You must select at least one option.")
-    return generatePassword();
-  };
-  
-  //3. generate password based on criteria
-  for (var i = 0; i < passwordLength; i++) {
-    var passwordLength = Math.floor(Math.random() * passwordLength);
-  };
-
-  //4. display password to the page
+  for (var i = 0; i < length; i++) {
+    optionChosen = options[Math.floor(Math.random() * options.userChoice)];
+    switch (optionChosen) {
+      case 1:
+        var choice = lowercase();
+        password += choice;
+        break;
+      case 2:
+        var choice = uppercase();
+        password += choice;
+        break;
+      case 3:
+        var choice = numbers();
+        password += choice;
+        break;
+      case 4:
+        var choice = special();
+        password += choice;
+        break;
+      default:
+        window.alert("Error.")
+        break;
+      var password = generatePassword();
+    }
+  }
   return password;
-};
-
-generatePassword();
+}
 
 // Get references to the #generate element
 var generateBtn = document.querySelector("#generate");
