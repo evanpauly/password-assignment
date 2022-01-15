@@ -1,9 +1,4 @@
 // Assignment code here
-var random = function (min, max) {
-  var item = Math.floor(Math.random() * (max - min + 1) + min);
-  return item;
-}
-
 function length() {
   var userChoice = window.prompt("Password Length");
   var userLength = parseInt(userChoice);
@@ -32,9 +27,15 @@ function lowercase() {
   return selectLowercase;
 }
 
-function useLowercase() {
-  var lowercase = "abcdefghijklmnopqrstuvwxyz";
-  return lowercase;
+var allLowercaseLetters = 'abcdefghijklmnopqrstuvwxyz';
+
+function generateLowercaseString(lowercase) {
+  let result = '';
+  var lowercaseLetters = allLowercaseLetters.lowercase;
+  for (let i = 0; i < lowercase; i++) {
+    result += allLowercaseLetters.charAt(Math.floor(Math.random() * lowercaseLetters));
+  }
+  return result;
 }
 
 function uppercase() {
@@ -53,9 +54,15 @@ function uppercase() {
   return selectUppercase;
 }
 
-function useUppercase() {
-  var uppercase = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
-  return uppercase;
+var allUppercaseLetters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+
+function generateUppercaseString(uppercase) {
+  let result = '';
+  var uppercaseLetters = allUppercaseLetters.uppercase;
+  for (let i = 0; i < uppercase; i++) {
+    result += allUppercaseLetters.charAt(Math.floor(Math.random() * uppercaseLetters));
+  }
+  return result;
 }
 
 function numbers() {
@@ -74,9 +81,15 @@ function numbers() {
   return selectNumbers;
 }
 
-function useNumbers() {
-    var numbers = "0123456789";
-    return numbers;
+var allNumbers = '0123456789';
+  
+function generateNumbersString(numbers) {
+  let result = '';
+  var numberCharacters = allNumbers.numbers;
+  for (let i = 0; i < numbers; i++) {
+    result += allNumbers.charAt(Math.floor(Math.random() * numberCharacters));
+  }
+    return result;
   }
 
 function special() {
@@ -95,10 +108,16 @@ function special() {
   return selectSpecialCharacters;
 }
 
-function useSpecial() {
-  var specialCharacters = "!#$%'()*+,-./:;<=>?@[\]^_`{|}~";
-  return specialCharacters;
-}
+var allSpecialCharacters = '!#$%()*+,-./:;<=>?@[\]^_`{|}~';
+
+function generateSpecialString(special) {
+  let result = '';
+  var specialCharacters = allSpecialCharacters.special;
+  for (let i = 0; i < special; i++) {
+    result += allSpecialCharacters.charAt(Math.floor(Math.random() * specialCharacters));
+  }
+    return result;
+  }
 
 function generatePassword() {
   var passwordLength = length();
@@ -127,28 +146,27 @@ function generatePassword() {
     options.push(4);
   }
 
-  for (var i = 0; i < length; i++) {
+  for (var i = 0; i < userChoice; i++) {
     optionChosen = options[Math.floor(Math.random() * options.userChoice)];
     switch (optionChosen) {
       case 1:
-        var choice = lowercase();
+        var choice = generateLowercaseString();
         password += choice;
         break;
       case 2:
-        var choice = uppercase();
+        var choice = generateUppercaseString();
         password += choice;
         break;
       case 3:
-        var choice = numbers();
+        var choice = generateNumbersString();
         password += choice;
         break;
       case 4:
-        var choice = special();
+        var choice = generateSpecialString();
         password += choice;
         break;
       default:
         window.alert("Error.")
-        break;
       var password = generatePassword();
     }
   }
