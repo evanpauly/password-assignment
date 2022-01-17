@@ -3,17 +3,17 @@ function length() {
   var userChoice = window.prompt("Password Length");
   var userLength = parseInt(userChoice);
     if (userLength >= 8 && userLength <=128) {
-      var userChoice = userLength;
+      var userLengthChoice = userLength;
     } else {
       window.alert("Password Length must be between 8 and 128.");
-    var userChoice = length();
+    var userLengthChoice = length();
     }
-  return userChoice;
+  return userLengthChoice; 
   }
 
-function lowercase() {
-  var lowercase = window.confirm("Lowercase Letters?");
-  var lowercaseLetters = lowercase.yesLowercase();
+function useLowercase() {
+  var userChoice = window.confirm("Lowercase Letters?");
+  var lowercaseLetters = userChoice;
   switch (lowercaseLetters) {
     case true:
       var selectLowercase = true;
@@ -22,7 +22,7 @@ function lowercase() {
       var selectLowercase = false;
       break;
     default: window.alert("Please select an option.");
-    var selectLowercase = lowercase();
+    var selectLowercase = uselowercase();
   }
   return selectLowercase;
 }
@@ -31,17 +31,17 @@ var allLowercaseLetters = 'abcdefghijklmnopqrstuvwxyz';
 
 function generateLowercaseString(lowercase) {
   let result = '';
-  var lowercaseLetters = allLowercaseLetters.lowercase;
+  var lowercaseLetters = allLowercaseLetters;
   for (let i = 0; i < lowercase; i++) {
     result += allLowercaseLetters.charAt(Math.floor(Math.random() * lowercaseLetters));
   }
   return result;
 }
 
-function uppercase() {
+function useUppercase() {
   var uppercase = window.confirm("Uppercase Letters?");
-  var uppercaseLetters = uppercase.yesUppercase();
-  switch (uppercaseLetters) {
+  var uppercase = uppercase;
+  switch (uppercase) {
     case true:
       var selectUppercase = true;
       break;
@@ -58,16 +58,16 @@ var allUppercaseLetters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
 
 function generateUppercaseString(uppercase) {
   let result = '';
-  var uppercaseLetters = allUppercaseLetters.uppercase;
+  var uppercaseLetters = allUppercaseLetters;
   for (let i = 0; i < uppercase; i++) {
     result += allUppercaseLetters.charAt(Math.floor(Math.random() * uppercaseLetters));
   }
   return result;
 }
 
-function numbers() {
-  var numbers = window.confirm("Numbers?");
-  var numbersChosen = numbers.yesNumbers();
+function useNumbers() {
+  var userChoice = window.confirm("Numbers?");
+  var numbersChosen = userChoice;
   switch (numbersChosen) {
     case true:
       var selectNumbers = true;
@@ -76,7 +76,7 @@ function numbers() {
       var selectNumbers = false;
       break;
     default: window.alert("Please select an option.");
-    var selectNumbers = numbers();
+    var selectNumbers = useNumbers();
   }
   return selectNumbers;
 }
@@ -85,16 +85,16 @@ var allNumbers = '0123456789';
   
 function generateNumbersString(numbers) {
   let result = '';
-  var numberCharacters = allNumbers.numbers;
+  var numberCharacters = allNumbers;
   for (let i = 0; i < numbers; i++) {
     result += allNumbers.charAt(Math.floor(Math.random() * numberCharacters));
   }
     return result;
   }
 
-function special() {
-  var special = window.confirm("Special Charachters?");
-  var specialCharactersChosen = special.yesSpecialCharacters();
+function useSpecial() {
+  var userChoice = window.confirm("Special Characters?");
+  var specialCharactersChosen = userChoice;
   switch (specialCharactersChosen) {
     case true:
       var selectSpecialCharacters = true;
@@ -112,7 +112,7 @@ var allSpecialCharacters = '!#$%()*+,-./:;<=>?@[\]^_`{|}~';
 
 function generateSpecialString(special) {
   let result = '';
-  var specialCharacters = allSpecialCharacters.special;
+  var specialCharacters = allSpecialCharacters;
   for (let i = 0; i < special; i++) {
     result += allSpecialCharacters.charAt(Math.floor(Math.random() * specialCharacters));
   }
@@ -121,14 +121,18 @@ function generateSpecialString(special) {
 
 function generatePassword() {
   var passwordLength = length();
-  var lowercase = lowercase();
-  var uppercase = uppercase();
-  var numbers = numbers();
-  var specialCharacters = special();
+  var lowercase = useLowercase();
+  var uppercase = useUppercase();
+  var numbers = useNumbers();
+  var specialCharacters = useSpecial();
 
   while (passwordLength === false && lowercase === false && uppercase === false && numbers === false && specialCharacters === false) {
     window.alert("You must select at least one option.");
-    return generatePassword();
+    var passwordLength = length();
+    var lowercase = lowercase();
+    var uppercase = uppercase();
+    var numbers = numbers();
+    var specialCharacters = special();
   }
 
   var password = "";
@@ -146,8 +150,8 @@ function generatePassword() {
     options.push(4);
   }
 
-  for (var i = 0; i < userChoice; i++) {
-    optionChosen = options[Math.floor(Math.random() * options.userChoice)];
+  for (var i = 0; i < passwordLength; i++) {
+    optionChosen = options[Math.floor(Math.random() * options.passwordLength)];
     switch (optionChosen) {
       case 1:
         var choice = generateLowercaseString();
